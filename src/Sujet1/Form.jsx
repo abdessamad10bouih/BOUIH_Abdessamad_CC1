@@ -41,19 +41,16 @@ function Form({ click, ajouterFun, idV, MarqueV, TypeCarburantV, PrixLocationV, 
                     </p>
 
                     <form onSubmit={handleSubmit}>
-                        {/* ID Field */}
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="id">ID</label>
                             <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="id" type="text" name="id" value={formData.id} onChange={changer} placeholder="ID unique de la voiture" required />
                         </div>
 
-                        {/* Marque Field */}
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="Marque">Marque</label>
                             <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="Marque" name="Marque" type="text" value={formData.Marque} onChange={changer} placeholder="Ex: Renault, Peugeot, etc." required />
                         </div>
 
-                        {/* TypeCarburant Field */}
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="TypeCarburant">Type de TypeCarburant</label>
                             <select className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="TypeCarburant" value={formData.TypeCarburant} name="TypeCarburant" onChange={changer} required>
@@ -65,7 +62,6 @@ function Form({ click, ajouterFun, idV, MarqueV, TypeCarburantV, PrixLocationV, 
                             </select>
                         </div>
 
-                        {/* PrixLocation Field */}
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="PrixLocation">PrixLocation de location (€/jour)</label>
                             <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="PrixLocation" type="number" name="PrixLocation" placeholder="Ex: 50" min="0" value={formData.PrixLocation} onChange={changer} required />
