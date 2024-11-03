@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Form from "./Form";
 import Tablo from "./Tablo";
 
-const Voitures = [
+const LesVoiture = [
   {
     id: "v1",
     Marque: "Dacia_Logan",
@@ -28,17 +28,37 @@ const Voitures = [
       "https://ev-database.org/img/auto/Peugeot_e-208_2024/Peugeot_e-208_2024-01@2x.jpg",
   },
 ];
+
 function HomeSujet1() {
   const [showForm, setShowForm] = useState(false);
-  const [table, setTable] = useState(Voitures);
-  const supprimerFun = (id) => {
-    setTable(table.filter((voiture) => voiture.id !== id));
+  const [table, setTable] = useState(() => {
+    const savedData = localStorage.getItem("voitures");
+    return savedData ? JSON.parse(savedData) : LesVoiture;
+  });
+
+  const addVoiture = (newVoiture) => {
+    setTable((prevTable) => {
+      const updatedTable = [...prevTable, newVoiture];
+      localStorage.setItem("voitures", JSON.stringify(updatedTable)); // Save to local storage
+      return updatedTable;
+    });
   };
 
+  useEffect(() => {
+    localStorage.setItem("voitures", JSON.stringify(table));
+  }, [table]);
+
+  const supprimerFun = (id) => {
+    setTable((prevTable) => {
+      const updatedTable = prevTable.filter((voiture) => voiture.id !== id);
+      localStorage.setItem("voitures", JSON.stringify(updatedTable));
+      return updatedTable;
+    });
+  };
 
   return (
     <section className="w-full flex flex-col">
-      {showForm ? <Form setTable={setTable} click={() => setShowForm(!showForm)} /> : null}
+      {showForm ? <Form addVoiture={addVoiture} click={() => setShowForm(!showForm)} /> : null}
       <div className="w-full h-14 flex items-center px-8">
         <button
           className="w-40 h-10 bg-blue-600 text-white rounded-md focus:ring-2 focus:ring-blue-700"

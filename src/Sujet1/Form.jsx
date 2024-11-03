@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 
-function Form({ click, ajouterFun, idV, MarqueV, TypeCarburantV, PrixLocationV, imageV, setTable }) {
+function Form({ click, addVoiture, idV, MarqueV, TypeCarburantV, PrixLocationV, imageV, setTable }) {
     const [formData, setFormData] = useState({
         id: idV || "",
         Marque: MarqueV || "",
@@ -25,9 +25,9 @@ function Form({ click, ajouterFun, idV, MarqueV, TypeCarburantV, PrixLocationV, 
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setTable((table) => [...table, { ...formData }]);
-        click()
-    };
+        addVoiture({ ...formData });
+        click();
+      };
 
     return (
         <AnimatePresence>
